@@ -51,7 +51,7 @@ def get_reverse(sequence):
     If `sequence` is empty, an empty string is returned.
     """
     if len(sequence) > 0:
-        sequence=sequence[::-1]
+        sequence=sequence.upper()[::-1]
     return sequence
 
 def get_complement(sequence):
