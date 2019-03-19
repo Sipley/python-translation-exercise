@@ -14,9 +14,10 @@ def translate_sequence(rna_sequence, genetic_code):
     an empty string is returned.
     """
     aa_seq=''
+    rna_seq=rna_sequence.upper()
     if len(rna_sequence) >= 3:
-        for triplet in range(0, len(rna_sequence), 3):
-            codon=rna_sequence[triplet:triplet+3]
+        for nucl in range(0, len(rna_seq), 3):
+            codon=rna_seq[nucl:nucl+3]
             if len(codon) == 3:
                 aa=genetic_code.get(codon, aa_seq)
                 if aa == '*':
