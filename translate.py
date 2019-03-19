@@ -14,11 +14,15 @@ def translate_sequence(rna_sequence, genetic_code):
     an empty string is returned.
     """
     aa_seq=''
-    for triplet in range(0, len(rna_sequence), 3):
-        codon=rna_sequence[triplet:triplet+3]
-        aa=genetic_code[codon]
-        aa_seq+=aa
-    pass
+    if len(rna_sequence) >= 3:
+        for triplet in range(0, len(rna_sequence), 3):
+            codon=rna_sequence[triplet:triplet+3]
+            aa=genetic_code.get(codon, aa_seq)
+            if aa == '*':
+                break
+            else:
+                aa_seq+=aa
+    return aa_seq
 
 def get_all_translations(rna_sequence, genetic_code):
     """Get a list of all amino acid sequences encoded by an RNA sequence.
