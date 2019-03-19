@@ -61,7 +61,12 @@ def get_complement(sequence):
 
     If `sequence` is empty, an empty string is returned.
     """
-    pass
+    comp_seq=''
+    comp_code={"U":"A", "A":"U", "G":"C", "C":"G"}
+    for nucl in sequence.upper():
+        comp_nucl=comp_code[nucl]
+        comp_seq+=comp_nucl
+    return comp_seq
 
 def reverse_and_complement(sequence):
     """Get the reversed and complemented form of `sequence`.
