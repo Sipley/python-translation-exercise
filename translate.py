@@ -41,10 +41,16 @@ def get_all_translations(rna_sequence, genetic_code):
     If no amino acids can be translated from `rna_sequence`, an empty list is
     returned.
     """
-    for nuc in rna_sequence:
-        if rna_sequence[nuc:nuc+3] == 'AUG':
-            print(nuc)
-
+    start_list=['AUG']
+    poss_translation=[]
+    for nucl in range(0, len(rna_sequence)):
+        maybe_start=rna_sequence.upper()[nucl:nucl+3]
+        if maybe_start == "AUG":
+            ind=rna_sequence.upper().index(maybe_start)
+            translation=rna_sequence[ind:]
+            poss_translation.append(translate_sequence(translation, genetic_code))
+    return poss_translation
+        
 def get_reverse(sequence):
     """Reverse orientation of `sequence`.
 
