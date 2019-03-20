@@ -42,18 +42,18 @@ def get_all_translations(rna_sequence, genetic_code):
     returned.
     """
     poss_translation=[]
-    orf=[]
-    orf.append(rna_sequence)
-    orf.append(rna_sequence[1:])
-    orf.append(rna_sequence[2:])
-    for reading_frame in orf:
-        poss_translation.append(translate_sequence(reading_frame, genetic_code))
+    for nucl in range(0, len(rna_sequence)-2):
+        maybe_start=rna_sequence.upper()[nucl:nucl+3]
+        if maybe_start == "AUG":
+            ind=rna_sequence.upper().index(maybe_start)
+    return poss_translation
+
 #    for nucl in range(0, len(rna_sequence)-2):
 #        maybe_start=rna_sequence.upper()[nucl:nucl+3]
 #        if maybe_start == "AUG":
 #            ind=rna_sequence.upper().index(maybe_start)
-#    return ind
-    return poss_translation
+#            translation=rna_sequence[ind:]
+#            poss_translation.append(translate_sequence(translation, genetic_code))
 
 def get_reverse(sequence):
     """Reverse orientation of `sequence`.
