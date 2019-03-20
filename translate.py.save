@@ -42,8 +42,8 @@ def get_all_translations(rna_sequence, genetic_code):
     returned.
     """
     for nuc in rna_sequence:
-        if rna_sequence[nuc:nuc+3] == 'AUG':
-            print(nuc)
+        if [nuc:nuc+3] == 'AUG'
+        print("start")
 
 def get_reverse(sequence):
     """Reverse orientation of `sequence`.
