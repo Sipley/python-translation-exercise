@@ -43,6 +43,7 @@ def get_all_translations(rna_sequence, genetic_code):
     """
     poss_translation=[]
     orf=[]
+    start_count=0
     orf.append(rna_sequence.upper())
     orf.append(rna_sequence.upper()[1:])
     orf.append(rna_sequence.upper()[2:])
@@ -50,7 +51,8 @@ def get_all_translations(rna_sequence, genetic_code):
         for nucl in range(0, len(reading_frame), 3):
             codon=reading_frame[nucl:nucl+3]
             if codon == "AUG":
-                break
+                start_count+=1
+            # need to figure out how to not actually break necessarily b/c maybe more than one start codon
             else:
                 reading_frame=reading_frame[3:]
         if len(reading_frame) > 0:
