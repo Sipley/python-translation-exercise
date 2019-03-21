@@ -57,7 +57,6 @@ def get_all_translations(rna_sequence, genetic_code):
                 poss_transcript=''.join(codons)
                 poss_translation.append(translate_sequence(poss_transcript, genetic_code))
             codons.pop(0)
-            print(codons)
     return poss_translation
 
 def get_reverse(sequence):
