@@ -43,20 +43,21 @@ def get_all_translations(rna_sequence, genetic_code):
     """
     poss_translation=[]
     orf=[]
-    start_count=0
+    codons=[]
+    start='AUG'
     orf.append(rna_sequence.upper())
     orf.append(rna_sequence.upper()[1:])
     orf.append(rna_sequence.upper()[2:])
     for reading_frame in orf:
-        for nucl in range(0, len(reading_frame), 3):
+        for nucl in range(0, len(reading_frame)-2, 3):
             codon=reading_frame[nucl:nucl+3]
-            if codon == "AUG":
-                start_count+=1
-            # need to figure out how to not actually break necessarily b/c maybe more than one start codon
-            else:
-                reading_frame=reading_frame[3:]
-        if len(reading_frame) > 0:
-            poss_translation.append(translate_sequence(reading_frame, genetic_code))
+            codons.append(codon)
+        while start in codons:
+            if codons[0] == start:
+                poss_transcript=''.join(codons)
+                poss_translation.append(translate_sequence(poss_transcript, genetic_code))
+            codons.pop(0)
+            print(codons)
     return poss_translation
 
 def get_reverse(sequence):
